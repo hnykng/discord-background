@@ -531,3 +531,20 @@ svg {
 [data-list-id="guildsnav"] {
     padding-top: 3px !important;
 }
+
+/* Make Active Now / Friends panel transparent */
+.nowPlayingColumn__133bf {
+    background: transparent !important;
+}
+
+.container__133bf {
+    background: transparent !important;
+}
+
+.membersWrap_c8ffbb {
+    background: transparent !important;
+}
+
+.container_c8ffbb {
+    background: transparent !important;
+}
