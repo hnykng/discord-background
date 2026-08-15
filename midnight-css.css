@@ -1,0 +1,101 @@
+/* Midnight + frosted surfaces — low-end friendly */
+@import url('https://refact0r.github.io/midnight-discord/build/midnight.css');
+@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+    /* Keep Discord or your other theme in charge of the color palette. */
+    --colors: off;
+
+    /* Shared frosted-surface values: edit these to tune performance. */
+    --frosted-color: rgba(0, 0, 0, 0.15);
+    --frosted-blur: 6px;
+    --frosted-main-blur: 8px;
+}
+
+body {
+    --font: 'Figtree';
+    --code-font: '';
+    font-weight: 400;
+
+    --gap: 12px;
+    --divider-thickness: 4px;
+    --border-thickness: 1px;
+
+    --animations: on;
+    --list-item-transition: 0.2s ease;
+    --dms-icon-svg-transition: 0.4s ease;
+    --border-hover-transition: 0.2s ease;
+
+    --top-bar-height: var(--gap);
+    --top-bar-button-position: titlebar;
+    --top-bar-title-position: off;
+    --subtle-top-bar-title: off;
+    --custom-window-controls: on;
+    --window-control-size: 14px;
+
+    --custom-dms-icon: custom;
+    --dms-icon-svg-url: url('https://refact0r.github.io/midnight-discord/assets/Font_Awesome_5_solid_moon.svg');
+    --dms-icon-svg-size: 90%;
+    --dms-icon-color-before: var(--icon-subtle);
+    --dms-icon-color-after: var(--white);
+    --custom-dms-background: off;
+    --dms-background-image-url: url('');
+    --dms-background-image-size: cover;
+    --dms-background-color: linear-gradient(70deg, var(--blue-2), var(--purple-2), var(--red-2));
+
+    --background-image: off;
+    --background-image-url: url('');
+    --transparency-tweaks: off;
+    --remove-bg-layer: off;
+    --panel-blur: off;
+    --blur-amount: 12px;
+    --bg-floating: var(--bg-3);
+    --custom-chatbar: off;
+    --chatbar-height: 47px;
+    --small-user-panel: on;
+}
+
+/* Frost only the large, visible panels. Avoiding a child wildcard selector
+   reduces style recalculation while retaining the same visual treatment. */
+:is(
+    .guilds__5e434,
+    .sidebarList__5e434,
+    .chat_f75fb0 > .subtitleContainer_f75fb0,
+    .chatContent_f75fb0,
+    .container_c8ffbb,
+    .content_f75fb0 > .membersWrap_c8ffbb
+) {
+    background-color: var(--frosted-color) !important;
+    backdrop-filter: blur(var(--frosted-blur)) !important;
+    -webkit-backdrop-filter: blur(var(--frosted-blur)) !important;
+    border: none !important;
+}
+
+:is(
+    .container__133bf > .container__9293,
+    .container_f391e3 > .container__9293,
+    .homeWrapper__0920e > .container__9293,
+    .container__01ae2 > .container__9293,
+    .container_fb64c9 > .container__9293,
+    .peopleColumn__133bf,
+    .nowPlayingColumn__133bf,
+    .mainPageScroller__80907
+) {
+    background-color: var(--frosted-color) !important;
+    backdrop-filter: blur(var(--frosted-main-blur)) !important;
+    -webkit-backdrop-filter: blur(var(--frosted-main-blur)) !important;
+}
+
+/* Midnight marks many scrolling nodes as "will-change". Releasing that hint
+   avoids unnecessary GPU memory use on lower-end systems. */
+[class*='scroll'] {
+    will-change: auto;
+}
+
+/* Honors Windows' accessibility/performance preference without changing the
+   theme's layout, colors, panels, or controls. */
+@media (prefers-reduced-motion: reduce) {
+    body {
+        --animations: off;
+    }
+}
